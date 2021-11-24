@@ -38,17 +38,13 @@ const matchRoutes = require('./controllers/controller.js')
 
 // Start loop to watch NHL API and call CM API
 
-cron.schedule('0 */1 * * * *', () => {
+cron.schedule('0 */45 * * * *', () => {
 
   teamIds = [{ id: '1192', times:'' }];
 
   teamIds.forEach(function (teamId, index) {
 
-      console.log("New line");
-
       let url = 'https://proclubs.ea.com/api/nhl/clubs/matches?clubIds='+teamId.id+'&platform=ps5&matchType=gameType5';
-
-      console.log(url);
 
       let headers = {
         'accept-language': 'en-US,en;q=0.5',
@@ -66,10 +62,8 @@ cron.schedule('0 */1 * * * *', () => {
         a[0].a = a;
         a.push(a);
         matchRoutes.saveMatch(teamId.id, stringify(response.data));
-        console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
       })
   });
 

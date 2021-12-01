@@ -33,7 +33,8 @@ exports.getMatches = async (req, res) => {
     })
     .catch(err => {
       // Send a error message in response
-      res.json({ message: `There was an error retrieving matches: ${err}` })
+      res.json({ message: req })
+      //res.json({ message: `There was an error retrieving matches: ${err}` })
     })
 }
 
